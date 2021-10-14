@@ -176,10 +176,18 @@ namespace UFTools
                 dBHelper.ExeSql($@"IF EXISTS (SELECT * FROM sysdatabases WHERE name ='UFDATA_{plan.OldId}_{aCSet.Year}') DROP DATABASE UFDATA_{plan.NewId}_{aCSet.Year}", "master");
                 dBHelper.ExeSql($@"IF EXISTS (SELECT * FROM sysdatabases WHERE name ='UFMeta_{plan.OldId}') DROP DATABASE UFMeta_{plan.NewId}", "master");
             }
-            dBHelper.ExeSql($"UPDATE UA_AccountDatabase_Ex SET cDatabase = 'UFDATA_{plan.NewId}_{aCSet.Year}' WHERE cDatabase = 'UFDATA_{plan.OldId}_{aCSet.Year}'", dbName);
-            dBHelper.ExeSql($"UPDATE UA_AccountDatabase SET cDatabase = 'UFDATA_{plan.NewId}_{aCSet.Year}' WHERE cDatabase = 'UFDATA_{plan.OldId}_{aCSet.Year}'", "UFSystem");
-            dBHelper.ExeSql($"EXEC sp_renamedb N'UFDATA_{plan.OldId}_{aCSet.Year}',N'UFDATA_{plan.NewId}_{aCSet.Year}';", "UFSystem");
-            dBHelper.ExeSql($"EXEC sp_renamedb N'UFMeta_{plan.OldId}',N'UFMeta_{plan.NewId}';", "UFSystem");
+            string sql = $"UPDATE UA_AccountDatabase_Ex SET cDatabase = 'UFDATA_{plan.NewId}_{aCSet.Year}' WHERE cDatabase = 'UFDATA_{plan.OldId}_{aCSet.Year}'";
+            p($"[执行] {sql}...", ProcessType.Describe);
+            dBHelper.ExeSql(sql, dbName);
+            sql = $"UPDATE UA_AccountDatabase SET cDatabase = 'UFDATA_{plan.NewId}_{aCSet.Year}' WHERE cDatabase = 'UFDATA_{plan.OldId}_{aCSet.Year}'";
+            p($"[执行] {sql}...", ProcessType.Describe);
+            dBHelper.ExeSql(sql, "UFSystem");
+            sql = $"EXEC sp_renamedb N'UFDATA_{plan.OldId}_{aCSet.Year}',N'UFDATA_{plan.NewId}_{aCSet.Year}';";
+            p($"[执行] {sql}...", ProcessType.Describe);
+            dBHelper.ExeSql(sql, "UFSystem");
+            sql = $"EXEC sp_renamedb N'UFMeta_{plan.OldId}',N'UFMeta_{plan.NewId}';";
+            p($"[执行] {sql}...", ProcessType.Describe);
+            dBHelper.ExeSql(sql, "UFSystem");
             p(100, ProcessType.AllProcessVal);
             p(null, ProcessType.End);
         }
