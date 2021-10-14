@@ -1,7 +1,17 @@
 # UFTools
 
 #### 介绍
-用友U8账套替换工具，可以替换账套号和用户名称
+用友U8账套替换工具，可以替换账套号和用户名称。
+
+通过扫描全表进行数据更新。
+
+#### 使用步骤
+[![51MObT.png](https://z3.ax1x.com/2021/10/14/51MObT.png)](https://imgtu.com/i/51MObT)
+[![51MLrV.png](https://z3.ax1x.com/2021/10/14/51MLrV.png)](https://imgtu.com/i/51MLrV)
+[![51MjVU.png](https://z3.ax1x.com/2021/10/14/51MjVU.png)](https://imgtu.com/i/51MjVU)
+[![51MvaF.png](https://z3.ax1x.com/2021/10/14/51MvaF.png)](https://imgtu.com/i/51MvaF)
+[![51MqK0.png](https://z3.ax1x.com/2021/10/14/51MqK0.png)](https://imgtu.com/i/51MqK0)
+[![51Mx54.png](https://z3.ax1x.com/2021/10/14/51Mx54.png)](https://imgtu.com/i/51Mx54)
 
 #### 软件架构
 软件架构说明
