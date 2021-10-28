@@ -67,7 +67,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="42,30,0,0" TextWrapping="Wrap" Text="配置数据库" VerticalAlignment="Top" FontSize="20" Name="curTitle"/>
         <fa:ImageAwesome Icon="PowerOff" VerticalAlignment="Top" HorizontalAlignment="Right"  Width="25" Height="25" Foreground="#FFF17B7B" Margin="0,10,10,0" MouseUp="ImageAwesome_MouseLeave" ToolTip="退出" Style="{StaticResource ResourceKey=close}" Cursor="Hand"/>
         <fa:ImageAwesome Icon="FileText" VerticalAlignment="Top" HorizontalAlignment="Right"  Width="25" Height="25" Foreground="{DynamicResource SecondaryTextBrush}" Margin="0,10,50,0" MouseUp="Open_Log" ToolTip="日志" Style="{StaticResource ResourceKey=log}" Cursor="Hand"/>
-        <TextBlock HorizontalAlignment="Center" Margin="0,0,0,10" TextWrapping="Wrap" Text="用友U8账套替换工具 V1.0&#13;Developed by SHY in October 2021" TextAlignment="Center" VerticalAlignment="Bottom" Foreground="{DynamicResource SecondaryTextBrush}"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,0,0,10" TextWrapping="Wrap" Text="用友U8账套替换工具 V1.1&#13;Developed by SHY in October 2021" TextAlignment="Center" VerticalAlignment="Bottom" Foreground="{DynamicResource SecondaryTextBrush}"/>
         <Frame HorizontalAlignment="Center" Height="350" VerticalAlignment="Top" Width="800" NavigationUIVisibility="Hidden" Name="frame" Margin="0,100,0,0"/>
         <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Right" VerticalAlignment="Top">
             <StackPanel hc:Growl.GrowlParent="True" VerticalAlignment="Top" Margin="0,10,10,10"/>

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
+using System.ServiceProcess;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -184,10 +185,22 @@ namespace UFTools
             dBHelper.ExeSql(sql, "UFSystem");
             sql = $"EXEC sp_renamedb N'UFDATA_{plan.OldId}_{aCSet.Year}',N'UFDATA_{plan.NewId}_{aCSet.Year}';";
             p($"[执行] {sql}...", ProcessType.Describe);
-            dBHelper.ExeSql(sql, "UFSystem");
+            int count = 1;
+            while(count <= 3 && !dBHelper.ExeSql(sql, "UFSystem").Item1)
+            {
+                p($"[CMD] 重命名数据库失败，正在尝试第{count}/3次重启数据库服务...", ProcessType.Describe);
+                ServiceHelper.GetLocalSqlServices().ForEach(s => ServiceHelper.RestartService(s));
+                count++;
+            }
             sql = $"EXEC sp_renamedb N'UFMeta_{plan.OldId}',N'UFMeta_{plan.NewId}';";
             p($"[执行] {sql}...", ProcessType.Describe);
-            dBHelper.ExeSql(sql, "UFSystem");
+            count = 1;
+            while (count <= 3 && !dBHelper.ExeSql(sql, "UFSystem").Item1)
+            {
+                p($"[CMD] 重命名数据库失败，正在尝试第{count}/3次重启数据库服务...", ProcessType.Describe);
+                ServiceHelper.GetLocalSqlServices().ForEach(s => ServiceHelper.RestartService(s));
+                count++;
+            }
             p(100, ProcessType.AllProcessVal);
             p(null, ProcessType.End);
         }
