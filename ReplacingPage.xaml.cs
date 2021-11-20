@@ -186,7 +186,7 @@ namespace UFTools
             sql = $"EXEC sp_renamedb N'UFDATA_{plan.OldId}_{aCSet.Year}',N'UFDATA_{plan.NewId}_{aCSet.Year}';";
             p($"[执行] {sql}...", ProcessType.Describe);
             int count = 1;
-            while(count <= 3 && !dBHelper.ExeSql(sql, "UFSystem").Item1)
+            while (!(plan.OldId.Equals(plan.NewId) || count > 3 || dBHelper.ExeSql(sql, "UFSystem").Item1))
             {
                 p($"[CMD] 重命名数据库失败，正在尝试第{count}/3次重启数据库服务...", ProcessType.Describe);
                 ServiceHelper.GetLocalSqlServices().ForEach(s => ServiceHelper.RestartService(s));
@@ -195,7 +195,7 @@ namespace UFTools
             sql = $"EXEC sp_renamedb N'UFMeta_{plan.OldId}',N'UFMeta_{plan.NewId}';";
             p($"[执行] {sql}...", ProcessType.Describe);
             count = 1;
-            while (count <= 3 && !dBHelper.ExeSql(sql, "UFSystem").Item1)
+            while (!(plan.OldId.Equals(plan.NewId) || count > 3 || dBHelper.ExeSql(sql, "UFSystem").Item1))
             {
                 p($"[CMD] 重命名数据库失败，正在尝试第{count}/3次重启数据库服务...", ProcessType.Describe);
                 ServiceHelper.GetLocalSqlServices().ForEach(s => ServiceHelper.RestartService(s));
